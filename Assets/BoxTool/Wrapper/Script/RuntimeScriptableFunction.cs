@@ -12,7 +12,7 @@ namespace BT.ScriptablesObject
         }
     }
     
-    public class RuntimeScriptablePointer<T,T1> : ScriptableObject
+    public class RuntimeScriptableFunction<T,T1> : ScriptableObject
     {
         public event Func<T1,T> Action;
         public T Call(T1 t1)
@@ -20,7 +20,7 @@ namespace BT.ScriptablesObject
             return Action != null ? Action.Invoke(t1) : default;
         }
     }
-    public class RuntimeScriptableActionCallback<T,T1,T2> : ScriptableObject
+    public class RuntimeScriptableFunction<T,T1,T2> : ScriptableObject
     {
         public event Func<T1,T2,T> Action;
         public T Call(T1 t1, T2 t2)

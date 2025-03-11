@@ -12,15 +12,15 @@ public static class TestUtils
     /// </summary>
     /// <typeparam name="T">Type of object returned</typeparam>
     /// <returns>Object Loaded</returns>
-    public static T LoadAssetEditorMode<T>(string assetName) where T : Object
-    {
-        string[] guids = AssetDatabase.FindAssets(assetName);
-        if (guids.Length > 0)
-        {
-            return AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(guids[0]));
-        }
-        return null;
-    }
+    // public static T LoadAssetEditorMode<T>(string assetName) where T : Object
+    // {
+    //     string[] guids = AssetDatabase.FindAssets(assetName);
+    //     if (guids.Length > 0)
+    //     {
+    //         return AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(guids[0]));
+    //     }
+    //     return null;
+    // }
 
     /// <summary>
     /// Inject a value in a object with a specific property
