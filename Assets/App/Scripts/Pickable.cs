@@ -1,15 +1,21 @@
+using System;
 using UnityEngine;
 public class Pickable : MonoBehaviour
 {
-    //[Header("Settings")]
+    [Header("References")]
+    [SerializeField] RSO_Resource rsoResource;
 
-    //[Header("References")]
+    private void Awake()
+    {
+        rsoResource.Value += 1;
+    }
 
-    //[Space(10)]
-    // RSO
-    // RSF
-    // RSP
-
-    //[Header("Input")]
-    //[Header("Output")]
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            rsoResource.Value += 1;
+            Destroy(gameObject);
+        }
+    }
 }

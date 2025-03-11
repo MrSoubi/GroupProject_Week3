@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-    public UnityEvent<Vector2Int> onMove;
+    public UnityEvent<Vector2> onMove;
     private InputActionPlayer _inputActionPlayer;
 
     private void Awake() => _inputActionPlayer = new InputActionPlayer();
@@ -25,7 +25,7 @@ public class InputHandler : MonoBehaviour
 
     private void OnMovePerformed(InputAction.CallbackContext callbackContext)
     {
-        onMove.Invoke(callbackContext.ReadValue<Vector2Int>());
+        onMove.Invoke(callbackContext.ReadValue<Vector2>());
     }
     
 }
