@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+
 public class Pickable : MonoBehaviour
 {
     [Header("References")]
@@ -15,7 +16,7 @@ public class Pickable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             rsoResource.Value -= 1;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -1,8 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] string levelToLoad;
+
     [Header("References")] 
     [SerializeField] private RSO_Resource rsoResource;
 
@@ -28,7 +32,7 @@ public class Exit : MonoBehaviour
     {
         if (other.CompareTag("Player") && _canExit)
         {
-            Debug.Log("Exit");
+            SceneManager.LoadScene(levelToLoad);
         }
     }
 }

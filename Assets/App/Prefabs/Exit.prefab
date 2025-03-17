@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a08438548d4e7bad2b0571b19fb6e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelToLoad: ab9124f161b36f7409ea5df18682c430
   rsoResource: {fileID: 11400000, guid: 3da4b6a77ee7de449aaad97c616b8c24, type: 2}
 --- !u!61 &942604700939379534
 BoxCollider2D:
