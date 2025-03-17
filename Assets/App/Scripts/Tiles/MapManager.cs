@@ -1,33 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
-public class LevelGenerator : MonoBehaviour
+public class MapManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TilemapData[] tilemapsData;
 
-    [Space(10)] 
-    
+    [Space(10)]
+    [SerializeField] Tilemap fogOfWarTilemap;
+    [SerializeField] Tile fogOfWarTile;
+
+    [Space(10)]
     [SerializeField] private RSF_AccessNextTile rsfAccessNextTile;
     
-    
     private readonly Dictionary<Vector2Int, List<TilemapData.TileType>> _tiles = new ();
-    
-    private void Awake()
-    {
-        GenerateLevel();
-    }
+    Dictionary<Vector2Int, bool> fogOfWarHasVisitedTile = new();
+
+    [Header("Input")]
+    [SerializeField] RSE_OnPlayerMove rseOnPlayerMove;
 
     private void OnEnable()
     {
         rsfAccessNextTile.Action += CheckAccessNextTile;
+        rseOnPlayerMove.Action += CheckFogOfWar;
     }
-    
-    
-    private void OnDisable() => rsfAccessNextTile.Action -= CheckAccessNextTile;
+    private void OnDisable()
+    {
+        rsfAccessNextTile.Action -= CheckAccessNextTile;
+        rseOnPlayerMove.Action -= CheckFogOfWar;
+    }
+
+    private void Awake()
+    {
+        GenerateLevel();
+    }
 
     private bool CheckAccessNextTile(Vector2 nextTile)
     {
@@ -78,19 +87,34 @@ public class LevelGenerator : MonoBehaviour
 
             foreach (var position in tilemapData.tilemap.cellBounds.allPositionsWithin)
             {
+                Vector2Int posInt = (Vector2Int)position;
+
                 if (tilemapData.tilemap.HasTile(position))
                 {
-                    Vector2Int posInt = new Vector2Int(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y));
-                    
                     if (!_tiles.ContainsKey(posInt))
                     {
                         _tiles[posInt] = new List<TilemapData.TileType>(){Capacity = 2};
                     }
                     _tiles[posInt].Add(tilemapData.tilemapTile);
                 }
+
+                if (!fogOfWarHasVisitedTile.ContainsKey(posInt))
+                {
+                    fogOfWarHasVisitedTile.Add(posInt, false);
+                    fogOfWarTilemap.SetTile(position, fogOfWarTile);
+                }
             }
         }
-        
+    }
+
+    void CheckFogOfWar(Vector3Int posToCheck)
+    {
+        Vector2Int pos = (Vector2Int)posToCheck;
+        if (fogOfWarHasVisitedTile.ContainsKey(pos))
+        {
+            fogOfWarTilemap.SetTile(posToCheck, null);
+            fogOfWarHasVisitedTile[pos] = true;
+        }
     }
 }
 

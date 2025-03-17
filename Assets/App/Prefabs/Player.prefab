@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rsfAccessNextTile: {fileID: 11400000, guid: 2dbccc9c8a9f1e0499a0dbce534a96da, type: 2}
+  rseOnPlayerMove: {fileID: 11400000, guid: e6d127b4f3422564a8191fa2170f260d, type: 2}
 --- !u!50 &1432881239050497320
 Rigidbody2D:
   serializedVersion: 5
