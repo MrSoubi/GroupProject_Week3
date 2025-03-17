@@ -38,33 +38,26 @@ public class MapManager : MonoBehaviour
         GenerateLevel();
     }
 
-    private bool CheckAccessNextTile(Vector2 nextTile)
+    private TilemapData.TileType CheckAccessNextTile(Vector2 nextTile)
     {
         Vector2Int nextTileInt = new Vector2Int(Mathf.FloorToInt(nextTile.x), Mathf.FloorToInt(nextTile.y));
-        
+        TilemapData.TileType currentType = TilemapData.TileType.None;
+
         if (_tiles.TryGetValue(nextTileInt, out var tileTypes))
         {
             foreach (var tileType in tileTypes)
             {
-                
-                switch (tileType)
-                {
-                    case TilemapData.TileType.Wall:
-                        return false;
-                    case TilemapData.TileType.Floor:
-                        break;
-                    case TilemapData.TileType.Interactible:
-                        break;
-                    case TilemapData.TileType.None:
-                        return false;
-                }
+                if (tileType == TilemapData.TileType.Wall && currentType != TilemapData.TileType.Wall)
+                    currentType = TilemapData.TileType.Wall;
+
+                else if (tileType != TilemapData.TileType.Wall && currentType == TilemapData.TileType.Wall)
+                    continue;
+
+                else currentType = tileType;
             }
-            
-            return true;
-            
         }
 
-        return false;
+        return currentType;
     }
 
     private void GenerateLevel()

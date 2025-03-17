@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2926452907501284952}
-  - component: {fileID: 4388363319209025158}
   - component: {fileID: 1432881239050497320}
   - component: {fileID: 1070067818222318949}
+  - component: {fileID: 4388363319209025158}
+  - component: {fileID: 2825991849224823018}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -36,20 +37,6 @@ Transform:
   - {fileID: 3277674571240365685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4388363319209025158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2468449376059528924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deed38d0af62da647a56dbb375730f23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rsfAccessNextTile: {fileID: 11400000, guid: 2dbccc9c8a9f1e0499a0dbce534a96da, type: 2}
-  rseOnPlayerMove: {fileID: 11400000, guid: e6d127b4f3422564a8191fa2170f260d, type: 2}
 --- !u!50 &1432881239050497320
 Rigidbody2D:
   serializedVersion: 5
@@ -123,6 +110,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4388363319209025158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2468449376059528924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deed38d0af62da647a56dbb375730f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rsfAccessNextTile: {fileID: 11400000, guid: 2dbccc9c8a9f1e0499a0dbce534a96da, type: 2}
+  ghostPowerUp: {fileID: 2825991849224823018}
+  rseOnPlayerMove: {fileID: 11400000, guid: e6d127b4f3422564a8191fa2170f260d, type: 2}
+--- !u!114 &2825991849224823018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2468449376059528924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1697f83430a12b40a66e9c7877d595d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rseOnPowerUpicked: {fileID: 11400000, guid: f8a13bcb8e2c28a41a0580db6648db32, type: 2}
 --- !u!1 &8719002157547574250
 GameObject:
   m_ObjectHideFlags: 0
