@@ -11,3 +11,8 @@
  - Fog of war (with temporary low alpha) wich shows the player path
  - Main menu with Play & Quit buttons
  - Total a 3 levels
+
+ - Ajout d'un système de génération aléatoire de pickables.
+ - Ajout d'un caméra sur le joueur.
+ - Ajout du contrôle avec swipe sur le touch screen.
+ - Ajout d'un timer.
