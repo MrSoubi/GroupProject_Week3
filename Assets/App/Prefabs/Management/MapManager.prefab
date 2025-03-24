@@ -220,6 +220,10 @@ MonoBehaviour:
     tilemap: {fileID: 6167609458120105591}
   - tilemapTile: 1
     tilemap: {fileID: 558022921904164782}
+  wallTilemap: {fileID: 0}
+  floorTilemap: {fileID: 0}
+  pickablePrefab: {fileID: 2883623243495249253, guid: 5b82a560c25cce94a88b8a457856a104, type: 3}
+  pickableCount: 4
   fogOfWarTilemap: {fileID: 7540469577653894625}
   fogOfWarTile: {fileID: 11400000, guid: e3930ee4df615ff47a2f4d7a6ddff159, type: 2}
   rsfAccessNextTile: {fileID: 11400000, guid: 2dbccc9c8a9f1e0499a0dbce534a96da, type: 2}

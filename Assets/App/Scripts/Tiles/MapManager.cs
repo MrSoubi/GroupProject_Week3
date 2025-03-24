@@ -8,6 +8,11 @@ public class MapManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TilemapData[] tilemapsData;
+    [SerializeField] private Tilemap wallTilemap;
+    [SerializeField] private Tilemap floorTilemap;
+    [SerializeField] private GameObject pickablePrefab;
+
+    public int pickableCount = 4;
 
     [Space(10)]
     [SerializeField] Tilemap fogOfWarTilemap;
@@ -98,6 +103,8 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+
+        GeneratePickables();
     }
 
     void CheckFogOfWar(Vector3Int posToCheck)
@@ -108,6 +115,43 @@ public class MapManager : MonoBehaviour
             fogOfWarTilemap.SetTile(posToCheck, null);
             fogOfWarHasVisitedTile[pos] = true;
         }
+    }
+
+    private void GeneratePickables()
+    {
+        foreach (var _ in new int[pickableCount])
+        {
+            GeneratePickable();
+        }
+    }
+
+    private void GeneratePickable()
+    {
+        Vector3Int randomPosition = GenerateRandomVector3Int(floorTilemap.cellBounds.min, floorTilemap.cellBounds.max);
+
+        while (!IsCellEmpty(randomPosition))
+        {
+            randomPosition = GenerateRandomVector3Int(floorTilemap.cellBounds.min, floorTilemap.cellBounds.max);
+        }
+
+        Vector3 position = (Vector3)randomPosition;
+        pickablePositions.Add((Vector2Int)randomPosition);
+        Instantiate(pickablePrefab, randomPosition, Quaternion.identity);
+    }
+
+    List<Vector2Int> pickablePositions = new List<Vector2Int>();
+
+    private bool IsCellEmpty(Vector3Int position)
+    {
+        return (!wallTilemap.HasTile(position) && !pickablePositions.Contains((Vector2Int)position));
+    }
+
+    private Vector3Int GenerateRandomVector3Int(Vector3Int min, Vector3Int max)
+    {
+        int randomX = UnityEngine.Random.Range(min.x, max.x);
+        int randomY = UnityEngine.Random.Range(min.y, max.y);
+
+        return new Vector3Int(randomX, randomY, 0);
     }
 }
 
