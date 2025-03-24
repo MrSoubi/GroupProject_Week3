@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: cf898917e5ea52a44b1200d4dd5bb468, type: 3}
   m_Name: RSE_OnGhostPowerPicked
   m_EditorClassIdentifier: Assembly-CSharp::RSE_OnGhostPowerPicked
